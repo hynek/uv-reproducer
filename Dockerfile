@@ -26,6 +26,9 @@ RUN --mount=type=cache,target=/root/.cache <<EOT
 cd /src
 uv sync --frozen --no-dev
 
+# Works here! :)
+/app/bin/python -Ic 'import tc'
+
 # The following works:
 # uv pip install \
 #     --python=$UV_PROJECT_ENVIRONMENT \
@@ -46,5 +49,7 @@ RUN <<EOT
 /app/bin/python -Im site
 
 ls -al /app/lib/python3.12/site-packages
+
+# But not here! :(
 /app/bin/python -Ic 'import tc'
 EOT
